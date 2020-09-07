@@ -1,7 +1,7 @@
 import os
 import flask
 
-from src.builder import Builder
+from builder import Builder
 
 #Create flask ppplication
 app = flask.Flask(__name__)
