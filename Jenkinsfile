@@ -103,8 +103,8 @@ pipeline {
     post {
         always { 
             //Remove development container
-            sh("docker container stop ${DEVELOPMENT_CONTAINER_ID}")
-            sh("docker container rm ${DEVELOPMENT_CONTAINER_ID}")
+            //sh("docker container stop ${DEVELOPMENT_CONTAINER_ID}")
+            //sh("docker container rm ${DEVELOPMENT_CONTAINER_ID}")
         }
     }
 }
