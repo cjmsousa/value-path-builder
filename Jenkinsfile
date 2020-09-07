@@ -5,7 +5,8 @@ pipeline {
     environment {
         IMAGE_NAME = "${JOB_NAME}"
         IMAGE_TAG = "${BUILD_ID}"
-        APP_PORT = 5000
+        APP_PUBLIC_PORT = 50001
+        APP_PRIVATE_PORT = 5000
         DEVELOPMENT_CONTAINER_ID = ""
         DEVELOPMENT_IMAGE_ID = ""
         RELEASE_IMAGE_ID = ""
@@ -40,7 +41,7 @@ pipeline {
                     DEVELOPMENT_IMAGE_ID = sh(script: "docker images ls -q --filter reference=${IMAGE_NAME}:${IMAGE_TAG}", returnStdout: true).trim()
                     
                     //Start development container
-                    DEVELOPMENT_CONTAINER_ID = sh(script: 'docker run -d -p ${APP_PORT}:${APP_PORT} ${IMAGE_NAME}:${IMAGE_TAG}', returnStdout: true).trim()
+                    DEVELOPMENT_CONTAINER_ID = sh(script: 'docker run -d -p ${APP_PUBLIC_PORT}:${APP_PRIVATE_PORT} ${IMAGE_NAME}:${IMAGE_TAG}', returnStdout: true).trim()
                 }
                 echo "Development image created with id [${DEVELOPMENT_IMAGE_ID}]"
                 echo "Development container created with id [${DEVELOPMENT_CONTAINER_ID}]"
