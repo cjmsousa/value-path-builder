@@ -27,10 +27,11 @@ class Builder:
     def build(self):
 
         #Load yaml defintion file
+        print('1')
         document = yaml.full_load(self.file)
-
+        print(2)
         #Create configuration
-        configuration = document['configuration']
+        configuration = document['configuration'] if 'configuration' in document else None
 
         #Create output file
         f = tempfile.NamedTemporaryFile(mode="w", delete=False)
@@ -56,7 +57,8 @@ class Builder:
             f.write(dependency.generate_code())
 
         #Iterate comments
-        for commentDefinition in document['comments']:
+        comments = document['comments'] if 'comments' in document else []
+        for commentDefinition in comments:
 
             #Create comment
             comment = Comment(commentDefinition)
