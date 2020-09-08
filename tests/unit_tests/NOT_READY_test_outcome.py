@@ -1,6 +1,7 @@
 import yaml
 import re
 
+# pylint: disable=import-error
 from outcome import Outcome
 
 def test_code_generation():

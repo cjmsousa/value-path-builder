@@ -1,5 +1,6 @@
 import yaml
 
+# pylint: disable=import-error
 from dependecy import Dependency
 
 def test_code_generation():

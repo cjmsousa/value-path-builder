@@ -2,6 +2,7 @@ import os
 import yaml
 import filecmp
 
+# pylint: disable=import-error
 from src.builder import Builder
 
 def test_build():

@@ -1,5 +1,6 @@
 import yaml
 
+# pylint: disable=import-error
 from valuepoint import ValuePoint
 
 def test_code_generation():
