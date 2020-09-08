@@ -21,7 +21,7 @@ class ValuePoint:
 
 
         #Define value point definition
-        fillColor = self.configuration['external-color'] if self.type == 'external' else self.configuration['internal-color']
+        fillColor = self.configuration[self.type]
         fontColor = "#ffffff"
         valuePointCode = '"%s" [shape = "rectangle", fontname = "Courier New", style = "filled", fillcolor = "%s", color = "#ffffff", fontcolor = "%s"]\n' % (self.label, fillColor, fontColor)
     

@@ -5,7 +5,7 @@ import tempfile
 # pylint: disable=import-error
 from valuepoint import ValuePoint
 from dependecy import Dependency
-from outcome import Outcome
+from comment import Comment
 
 class Builder:
 
@@ -55,12 +55,12 @@ class Builder:
             dependency = Dependency(dependencyDefinition)
             f.write(dependency.generate_code())
 
-        #Iterate outcomes
-        for outcomeDefinition in document['outcomes']:
+        #Iterate comments
+        for commentDefinition in document['comments']:
 
-            #Create outcome
-            outcome = Outcome(outcomeDefinition)
-            f.write(outcome.generate_code())
+            #Create comment
+            comment = Comment(commentDefinition)
+            f.write(comment.generate_code())
 
         #Iterate levels
         levelOrderDot = ""
