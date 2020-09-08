@@ -10,6 +10,13 @@ RUN pip install -r requirements.txt
 #Copy source code
 COPY src/ /app/
 
+#Install graphviz
+RUN apt-get update
+RUN apt-get install -y graphviz
+
+#Check graphviz version
+RUN dot -V
+
 #Start the app
 CMD ["python", "/app/app.py"] 
 
