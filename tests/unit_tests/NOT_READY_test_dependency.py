@@ -1,7 +1,6 @@
 import yaml
 
-from src.dependecy import Dependency
-
+from dependecy import Dependency
 
 def test_code_generation():
     

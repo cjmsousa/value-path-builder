@@ -1,7 +1,6 @@
 import yaml
 
-from src.valuepoint import ValuePoint
-
+from valuepoint import ValuePoint
 
 def test_code_generation():
     

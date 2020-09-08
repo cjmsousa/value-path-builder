@@ -1,33 +1,29 @@
 import os
 import yaml
+import tempfile
 
-from valuepoint import ValuePoint
-from dependecy import Dependency
-from outcome import Outcome
+from src.valuepoint import ValuePoint
+from src.dependecy import Dependency
+from src.outcome import Outcome
 
 class Builder:
 
-    def __init__(self, file, filename, outputDirectory):
+    def __init__(self, file, filename):
 
         #Validate inputs
         try:
             self.file = file
             self.filename = filename
-            self.outputDirectory = outputDirectory
 
         except:
 
             #Invalidate inputs
             self.file = None
-            self.outputDirectory = None
+            self.filename = None
 
             raise Exception('Builder has some invalid input parameters')
 
     def build(self):
-
-        #Get value path definition file
-        valuePathDotFilename = self.outputDirectory + "/" + os.path.splitext(self.filename)[0] + '.dot'
-        valuePathImageFilename = self.outputDirectory + "/" + os.path.splitext(self.filename)[0] + '.svg'
 
         #Load yaml defintion file
         document = yaml.full_load(self.file)
@@ -36,7 +32,7 @@ class Builder:
         configuration = document['configuration']
 
         #Create output file
-        f = open(valuePathDotFilename, 'w')
+        f = tempfile.NamedTemporaryFile(mode="w", delete=False)
 
         #Start dot file
         f.write('digraph valuePath {\n')
@@ -86,9 +82,10 @@ class Builder:
         f.close()
 
         #Build graph image
-        os.system('dot -Tsvg %s -o %s' % (valuePathDotFilename, valuePathImageFilename))
+        outputFile = tempfile.NamedTemporaryFile(mode="w", suffix=".svg", delete=False)
+        os.system('dot -Tsvg %s -o %s' % (f.name, outputFile.name))
 
-        return(valuePathImageFilename)
+        return(outputFile.name)
 
     def create_level(self, levelId, level):
 
