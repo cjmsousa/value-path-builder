@@ -1,7 +1,6 @@
 import os
 import flask
 
-# pylint: disable=import-error
 from builder import Builder
 
 #Create flask ppplication
