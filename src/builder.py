@@ -2,9 +2,9 @@ import os
 import yaml
 import tempfile
 
-from src.valuepoint import ValuePoint
-from src.dependecy import Dependency
-from src.outcome import Outcome
+from valuepoint import ValuePoint
+from dependecy import Dependency
+from outcome import Outcome
 
 class Builder:
 
