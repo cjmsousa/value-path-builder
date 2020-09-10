@@ -58,16 +58,33 @@ class VpbParser(Parser):
 
             for valuePoint in level['value-points']:
 
-                for dependency in valuePoint['dependencies']:
+                if 'dependencies' in valuePoint:
 
-                    newDependency = dict()
-                    newDependency['src'] = dependency
-                    newDependency['dest'] = valuePoint['label']
+                    for dependency in valuePoint['dependencies']:
 
-                    newDependencies.append(newDependency)
+                        newDependency = dict()
+                        newDependency['src'] = dependency
+                        newDependency['dest'] = valuePoint['label']
+
+                        newDependencies.append(newDependency)
 
         return(newDependencies)
 
     def parse_comments(self, vpbDocument):
 
-        pass
+        newComments = list()
+        for level in vpbDocument['levels']:
+
+            for valuePoint in level['value-points']:
+                
+                if 'comment' in valuePoint:
+                    
+                    newComment = dict()
+
+                    newComment['label'] = valuePoint['comment']
+                    newComment['value-point'] = valuePoint['label']
+
+                    print("newComment %s" %(str(valuePoint['comment'])))
+                    newComments.append(newComment)
+
+        return(newComments)
