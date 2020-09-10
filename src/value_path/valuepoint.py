@@ -21,7 +21,11 @@ class ValuePoint:
 
 
         #Define value point definition
-        fillColor = self.configuration[self.type]
+        print(self.configuration)
+        print(self.type)
+        print(self.configuration[self.type])
+        print(self.configuration[self.type]['color'])
+        fillColor = self.configuration[self.type]['color']
         fontColor = "#ffffff"
         valuePointCode = '"%s" [shape = "rectangle", fontname = "Courier New", style = "filled", fillcolor = "%s", color = "#ffffff", fontcolor = "%s"]\n' % (self.label, fillColor, fontColor)
     
