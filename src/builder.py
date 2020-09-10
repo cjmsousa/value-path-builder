@@ -1,10 +1,12 @@
 import os
-import yaml
 import tempfile
 
-from valuepoint import ValuePoint
-from dependecy import Dependency
-from comment import Comment
+from parsers.parser_factory import ParserFactory
+
+from value_path.valuepoint import ValuePoint
+from value_path.dependecy import Dependency
+from value_path.comment import Comment
+
 
 class Builder:
 
@@ -25,10 +27,10 @@ class Builder:
 
     def build(self):
 
-        #Load yaml defintion file
-        print('1')
-        document = yaml.full_load(self.file)
-        print(2)
+        #Create parser based on file extension and parse file
+        parser = ParserFactory.create_instance(os.path.splitext(self.filename)[1][1:], self.file)
+        document = parser.parse()
+
         #Create configuration
         configuration = document['configuration'] if 'configuration' in document else None
 
